@@ -1,0 +1,55 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(112, 196, 245);
+    width: 360px;
+    height: 480px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+}
+
+.display{
+    display: flex;
+    background-color: antiquewhite;
+    height: 120px;
+    width: 360px;
+}
+
+.numpad{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    width: 360px;
+    height: 360px;
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: gray;
+    box-sizing: border-box;
+    border-radius: 2px;
+    margin: 0;
+    padding: 0;
+}
