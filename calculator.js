@@ -8,9 +8,8 @@ buttons.forEach(button => {
             opArr.push(button.id);
             updateScreen();
         }
-        if(isOperation(button.id)){
-            opArr.push(button.textContent);
-            updateScreen();
+        else if(isOperation(button.id)){
+            handleOperation(button.id);
         }
     });
 });
@@ -44,7 +43,8 @@ function handleOperation(operation){
             calculateResult();
             break;
         case 'deci':
-            handleDeicmal();
+            opArr.push('.');
+            updateScreen();
             break;
         default:
             const operatorMap = {
@@ -57,4 +57,45 @@ function handleOperation(operation){
             updateScreen();
             break;
     }
+}
+
+function calculateResult(){
+    let str = '';
+    let numbers = [];
+    for (let i = 0; i < opArr.length; i++){
+        if (['+', '-', '*', '/'].includes(opArr[i])){
+            let num = parseFloat(str);
+            str = '';
+            numbers.push(num);
+            numbers.push(opArr[i]);
+        }else{
+            str += opArr[i];
+        }
+    }
+    numbers.push(parseFloat(str));
+
+    opArr = numbers.reduce((pre, cur, i, numbers) => {
+        if(cur === '+'){
+            pre += numbers[i + 1];
+            numbers.splice(0, 1, pre);
+        }
+        else if(cur === '-'){
+            pre -= numbers[i + 1];
+            numbers.splice(0, 1, pre);
+        }
+        else if(cur === '/'){
+            pre /= numbers[i + 1];
+            numbers.splice(0, 1, pre);
+        }
+        else if(cur === '*'){
+            pre *= numbers[i + 1];
+            numbers.splice(0, 1, pre);
+        }
+        else{
+            return numbers[0];
+        }
+    });
+    opArr = []
+    opArr.push(numbers[0]);
+    updateScreen();
 }
